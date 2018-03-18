@@ -48,6 +48,8 @@ console.log(questionsArray)
 //hide questions untill the user clicks start
 $("#main-quiz-display").hide();
 $("#end-stats-display").hide();
+$("#question-answer-display").hide();
+
 
 
 $("#start-btn").on("click", function(){
@@ -80,11 +82,13 @@ $(".answer-choice").on("click", function(){
     if($(this).val()==questionsArray[questionIndex].correctAnswer){
         console.log("Correct! Nice job!")
         $("#message-display").html("Correct! Nice job!")
+        $("#question-answer-display").show();
         numberCorrect++;
         setTimeout(nextQuesiton, 3000);
     }else {
         console.log("Nope!")
         $("#message-display").html("Nope!")
+        $("#question-answer-display").show();
         numberWrong++;
         setTimeout(nextQuesiton, 3000);
     }
@@ -119,9 +123,13 @@ function countDown(){
     $("#time-display").html(time)
     if(time === 0){
         clearInterval(timerIntervalId);
-        $("#time-display").html("Time's Up!!")
+        //$("#time-display").html("Time's Up!!")
+        $("#message-display").html("Time's Up!");
         numberUnanswered++;
         outOfTime = true;
+        lockOut = true;
+        $("#question-answer-display").show();
+        setTimeout(nextQuesiton, 3000);
         //reveal question
     }
 }
@@ -140,13 +148,20 @@ function nextQuesiton (){
     outOfTime = false;
     //reset lockour flag
     lockOut = false;
+    //clear message field
+    $("#message-display").html("");
     //start timer
-    $("#time-display").html(time)
-    timerIntervalId = setInterval(countDown, 1000)
+    $("#time-display").html(time);
+    timerIntervalId = setInterval(countDown, 1000);
+    //show main display and hide answer display
+    $("#question-answer-display").hide();
+    $("#main-quiz-display").show();
+    
 }
 
 function showEndStats(){
     $("#main-quiz-display").hide();
+    $("#question-answer-display").hide();
 
     $("#numb-correct-display").html(numberCorrect);
     $("#numb-wrong-display").html(numberWrong);

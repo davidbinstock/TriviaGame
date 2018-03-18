@@ -16,11 +16,25 @@
     font-size: 3em;
 }
 
-.timer-display, .question-field, .message-board{
+.main-quiz-display{
+    width: 100%;
+    text-align: center;
+}
+
+.time-field, .question-field, .message-field{
     font-size: 1.5em;
+    height: 2em;
 }
 
 .answer-wrapper{
     display: flex;
     flex-flow: column nowrap;
+    width: 25%;
+    margin: 0 auto;
+}
+
+.question-answer-display{
+    background-color: violet;
+    height: 500px;
+    width: 700px;
 }
