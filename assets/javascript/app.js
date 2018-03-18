@@ -42,6 +42,8 @@ var inPlay = false;
 var numberCorrect = 0;
 var numberWrong = 0;
 var numberUnanswered = 0;
+var audio = new Audio("./assets/sounds/Seinfeld-Show-Funky-Tune.mp3");
+var audioEnd = new Audio("./assets/sounds/Seinfeld-theme-music.mp3");
 
 console.log(questionsArray)
 
@@ -84,12 +86,14 @@ $(".answer-choice").on("click", function(){
         $("#message-display").html("Correct! Nice job!")
         $("#question-answer-display").show();
         numberCorrect++;
+        audio.play();
         setTimeout(nextQuesiton, 3000);
     }else {
         console.log("Nope!")
         $("#message-display").html("Nope!")
         $("#question-answer-display").show();
         numberWrong++;
+        audio.play();
         setTimeout(nextQuesiton, 3000);
     }
        
@@ -99,7 +103,8 @@ $("#start-over-btn").on("click", function(){
     numberCorrect = 0;
     numberWrong = 0;
     numberUnanswered = 0;
-    
+    audioEnd.pause();
+    audioEnd.currentTime = 0;
     $("#main-quiz-display").show();
     $("#end-stats-display").hide();
     
@@ -128,6 +133,7 @@ function countDown(){
         numberUnanswered++;
         outOfTime = true;
         lockOut = true;
+        audio.play();
         $("#question-answer-display").show();
         setTimeout(nextQuesiton, 3000);
         //reveal question
@@ -160,6 +166,7 @@ function nextQuesiton (){
 }
 
 function showEndStats(){
+    audioEnd.play();
     $("#main-quiz-display").hide();
     $("#question-answer-display").hide();
 
@@ -170,12 +177,10 @@ function showEndStats(){
 
 }
 
-
-// display a question with 4 possible answers
-
-//start a timer for 30 seconds
-    //if the timer runs out before an answer is clicked -display "time-up" and show correct answer
-    
-    //if an answer is chosen before the timer ends
-        //if the answer is correct - display "correct" and go to next quesiton
-        //if the answer is wrong display "wrong" and show the correct answer and go to next question
+// To add:
+// Buttons - hover effect, change type?, change style
+// edit anser reveal section - include images or Gifs
+// include sounds?
+// fix styling/formating overall
+// add questions
+// make code DRY
