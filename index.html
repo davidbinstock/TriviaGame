@@ -7,13 +7,27 @@
     <title>Trivia Game</title>
     
     <!-- link to css -->
+    <link rel="stylesheet" href-"./assets/css/reset.css">
     <link rel="stylesheet" href="./assets/css/style.css">
     <!-- link to JQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
 
+    <div class="container">
+        <div class="title">Sienfeld Trivia</div>
+        <button id="start-btn" class="start-btn">Start</button>
+        <div class="time-field">Time Remaining: <span id="time-display"></span></div>
+        <div class="question-field">Question: <span id="question-display"></span></div>
+        <div class="message-field">Message: <span id="message-display"></span></div>
+        <div class="answer-wrapper">
+            <button id="answer-a" value="a" class="answer-choice">placeholder</button>
+            <button id="answer-b" value="b" class="answer-choice">placeholder</button>
+            <button id="answer-c" value="c" class="answer-choice">placeholder</button>
+            <button id="answer-d" value="d" class="answer-choice">placeholder</button>
+        </div>
 
+    </div>
     
     <!-- link to javascript file -->
     <script type="text/javascript" src="./assets/javascript/app.js" ></script>
