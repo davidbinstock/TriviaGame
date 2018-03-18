@@ -1,41 +1,107 @@
 var questionsArray = [
     {
-        question: "Q1: The correct answer is b",
+        question: "what is Kramer's first name",
         answers: {
-                    a: "Q1 answer a",
-                    b: "Q1 answer b",
-                    c: "Q1 answer c",
-                    d: "Q1 answer d"
+                    a: "Astro",
+                    b: "Cosmo",
+                    c: "Lonzo",
+                    d: "Gonzo"
                 },
         correctAnswer: "b"
     },
     {
-        question: "Q2: The correct answer is d",
+        question: "What's the name for someone who speaks too quetly",
         answers: {
-                    a: "Q2 answer a",
-                    b: "Q2 answer b",
-                    c: "Q2 answer c",
-                    d: "Q2 answer d"
+                    a: "soft-talker",
+                    b: "soft-speaker",
+                    c: "quiet-speaker",
+                    d: "low-talker"
                 },
         correctAnswer: "d"
+    },
+    {
+        question: "Who is Jerry's nemesis",
+        answers: {
+                    a: "The Soup Nazi",
+                    b: "Bania",
+                    c: "Newman",
+                    d: "J Peterman"
+                },
+        correctAnswer: "c"
     }
     
 ]
+var timePerQuesiton = 10;
+
 var questionIndex = 0;
-var time = 5;
+var time = timePerQuesiton;
 var timerIntervalId;
 var outOfTime = false;
+var lockOut = false;
+var inPlay = false;
+var numberCorrect = 0;
+var numberWrong = 0;
+var numberUnanswered = 0;
 
 console.log(questionsArray)
 
+//hide questions untill the user clicks start
+$("#main-quiz-display").hide();
+$("#end-stats-display").hide();
+
+
 $("#start-btn").on("click", function(){
+    if(inPlay){
+        return;
+    }
+    inPlay = true;
     setUpQuestion();
+    $("#time-display").html(time)
     timerIntervalId = setInterval(countDown, 1000)
+    $("#main-quiz-display").show();
+    $("#start-btn").hide();
 
 })
 
 $(".answer-choice").on("click", function(){
+    if(!inPlay){
+        return
+    }
+    if(lockOut){
+        return;
+    }
+    
+    //stop the clock
+    clearInterval(timerIntervalId);
+    //lockout
+    lockOut = true;
+    //check the answer against the correct answer
     console.log("you clicked answer: " + $(this).val())
+    if($(this).val()==questionsArray[questionIndex].correctAnswer){
+        console.log("Correct! Nice job!")
+        $("#message-display").html("Correct! Nice job!")
+        numberCorrect++;
+        setTimeout(nextQuesiton, 3000);
+    }else {
+        console.log("Nope!")
+        $("#message-display").html("Nope!")
+        numberWrong++;
+        setTimeout(nextQuesiton, 3000);
+    }
+       
+})
+
+$("#start-over-btn").on("click", function(){
+    numberCorrect = 0;
+    numberWrong = 0;
+    numberUnanswered = 0;
+    
+    $("#main-quiz-display").show();
+    $("#end-stats-display").hide();
+    
+    questionIndex = -1;
+    nextQuesiton();
+
 })
 
 function setUpQuestion(){
@@ -54,22 +120,40 @@ function countDown(){
     if(time === 0){
         clearInterval(timerIntervalId);
         $("#time-display").html("Time's Up!!")
+        numberUnanswered++;
         outOfTime = true;
+        //reveal question
     }
 }
 
 function nextQuesiton (){
-    questionIndex++;
-    setUpQuestion();
+     //go to next question index and set it up 
+     questionIndex++;
+        if(!(questionIndex < questionsArray.length)){
+            showEndStats();
+            return;
+        }
+     setUpQuestion();
+    //reset time
+    time = timePerQuesiton;
+    //reset out of time flag
+    outOfTime = false;
+    //reset lockour flag
+    lockOut = false;
+    //start timer
+    $("#time-display").html(time)
+    timerIntervalId = setInterval(countDown, 1000)
 }
 
-//set timer for 30 sec
-    
-    
+function showEndStats(){
+    $("#main-quiz-display").hide();
 
+    $("#numb-correct-display").html(numberCorrect);
+    $("#numb-wrong-display").html(numberWrong);
+    $("#numb-unanswered-display").html(numberUnanswered);
+    $("#end-stats-display").show();
 
-
-
+}
 
 
 // display a question with 4 possible answers

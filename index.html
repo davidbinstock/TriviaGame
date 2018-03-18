@@ -16,15 +16,27 @@
 
     <div class="container">
         <div class="title">Sienfeld Trivia</div>
+
         <button id="start-btn" class="start-btn">Start</button>
-        <div class="time-field">Time Remaining: <span id="time-display"></span></div>
-        <div class="question-field">Question: <span id="question-display"></span></div>
-        <div class="message-field">Message: <span id="message-display"></span></div>
-        <div class="answer-wrapper">
-            <button id="answer-a" value="a" class="answer-choice">placeholder</button>
-            <button id="answer-b" value="b" class="answer-choice">placeholder</button>
-            <button id="answer-c" value="c" class="answer-choice">placeholder</button>
-            <button id="answer-d" value="d" class="answer-choice">placeholder</button>
+
+        <div class="main-quiz-display" id="main-quiz-display">
+            <div class="time-field">Time Remaining: <span id="time-display"></span></div>
+            <div class="question-field">Question: <span id="question-display"></span></div>
+            <div class="message-field">Message: <span id="message-display"></span></div>
+            <div class="answer-wrapper">
+                <button id="answer-a" value="a" class="answer-choice">placeholder</button>
+                <button id="answer-b" value="b" class="answer-choice">placeholder</button>
+                <button id="answer-c" value="c" class="answer-choice">placeholder</button>
+                <button id="answer-d" value="d" class="answer-choice">placeholder</button>
+            </div>
+        </div>
+
+        <div class="end-stats-display" id="end-stats-display">
+            <div class="message"><span id="message-display">End of Quiz, here's how you did:</span></div>
+            <div class="numb-correct">Correct Answers:<span id="numb-correct-display"></span></div>
+            <div class="numb-wrong">Wrong Answers:<span id="numb-wrong-display"></span></div>
+            <div class="numb-unanswered">Unanswered:<span id="numb-unanswered-display"></span></div>
+            <button class="start-over-btn" id="start-over-btn">Start Over</button>
         </div>
 
     </div>
