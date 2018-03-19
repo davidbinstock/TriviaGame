@@ -1,11 +1,11 @@
 var questionsArray = [
     {
-        question: "what is Kramer's first name",
+        question: "What is Kramer's first name",
         answers: {
-                    a: "Astro",
+                    a: "Karl",
                     b: "Cosmo",
-                    c: "Lonzo",
-                    d: "Gonzo"
+                    c: "Astro",
+                    d: "Kenny"
                 },
         correctAnswer: "b"
     },
@@ -25,10 +25,40 @@ var questionsArray = [
                     a: "The Soup Nazi",
                     b: "Bania",
                     c: "Newman",
-                    d: "J Peterman"
+                    d: "J. Peterman"
                 },
         correctAnswer: "c"
-    }
+    },
+    {
+        question: "What is the name of the restaurant where Jerry and the gang spend much of their time",
+        answers: {
+                    a: "Manny's",
+                    b: "Monk's",
+                    c: "Milt's",
+                    d: "Minnie's"
+                },
+        correctAnswer: "b"
+    },
+    {
+        question: "A picture of which charachter is sold to a couple for $5,000",
+        answers: {
+                    a: "Jerry",
+                    b: "Kramer",
+                    c: "Elaine",
+                    d: "George"
+                },
+        correctAnswer: "b"
+    },
+    {
+        question: "Which of the following is not a part of the Festivus celebrations",
+        answers: {
+                    a: "Airing of Greivences",
+                    b: "Aluminum Pole",
+                    c: "Dance of Rage",
+                    d: "Feats of Strength"
+                },
+        correctAnswer: "c"
+    },
     
 ]
 var timePerQuesiton = 10;
@@ -43,6 +73,7 @@ var numberCorrect = 0;
 var numberWrong = 0;
 var numberUnanswered = 0;
 var audio = new Audio("./assets/sounds/Seinfeld-Show-Funky-Tune.mp3");
+    audio.volume = 0.4; //turning dow the volume a bit
 var audioEnd = new Audio("./assets/sounds/Seinfeld-theme-music.mp3");
 
 console.log(questionsArray)
