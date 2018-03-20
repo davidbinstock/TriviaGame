@@ -19,7 +19,7 @@ var questionsArray = [
                     c: "Astro",
                     d: "Kenny"
                 },
-        correctAnswer: "b",
+        correctAnswer: ["b", "Cosmo"],
         image: "./assets/images/kramer.gif"
     },
     {
@@ -30,7 +30,7 @@ var questionsArray = [
                     c: "quiet-speaker",
                     d: "low-talker"
                 },
-        correctAnswer: "d",
+        correctAnswer: ["d", "low-talker"],
         image: "./assets/images/lowtalker2.gif"
     },
     {
@@ -41,29 +41,29 @@ var questionsArray = [
                     c: "Newman",
                     d: "J. Peterman"
                 },
-        correctAnswer: "c",
+        correctAnswer: ["c", "Newman"],
         image: "./assets/images/newman.gif"
     },
     {
-        question: "What is the name of the restaurant where Jerry and the gang spend much of their time?",
+        question: "What is the name of the gang's diner hangout?",
         answers: {
                     a: "Manny's",
                     b: "Monk's",
                     c: "Milt's",
                     d: "Minnie's"
                 },
-        correctAnswer: "b",
+        correctAnswer: ["b", "Monk's"],
         image: "./assets/images/monks.jpg"
     },
     {
         question: "A picture of which character is sold to a couple for $5,000?",
         answers: {
-                    a: "Jerry",
-                    b: "Kramer",
+                    a: "Kramer",
+                    b: "Jerry",
                     c: "Elaine",
                     d: "George"
                 },
-        correctAnswer: "b",
+        correctAnswer: ["a", "Kramer"],
         image: "./assets/images/thekramer.jpg"
     },
     {
@@ -74,7 +74,7 @@ var questionsArray = [
                     c: "Dance of Rage",
                     d: "Feats of Strength"
                 },
-        correctAnswer: "c",
+        correctAnswer: ["c", "Dance of Rage"],
         image: "./assets/images/festivus.gif"
     },
 ]
@@ -87,6 +87,7 @@ var time = timePerQuesiton;
 var timerIntervalId;
 var answerRevealTimeoutId;
 var lockOut = false;
+var guessedRight = false;
 var numberCorrect = 0;
 var numberWrong = 0;
 var numberUnanswered = 0;
@@ -124,10 +125,14 @@ $(".answer-choice").on("click", function(){
     if(lockOut){return;}
     console.log("you clicked answer: " + $(this).val())
     //check the answer against the correct answer
-    if($(this).val()==questionsArray[questionIndex].correctAnswer){
+    guessedRight=false;
+    if($(this).val()==questionsArray[questionIndex].correctAnswer[0]){
         numberCorrect++;
+        guessedRight = true;
         console.log("Correct! Nice job!");
         answerReveal("Correct! Nice job!");
+        
+        
     }else {
         numberWrong++;
         console.log("Nope!");
@@ -191,11 +196,22 @@ function answerReveal(message){
     //lockout answer choice buttons
     lockOut = true;
 
+    //display image or GIF
     $("#image").attr("src", questionsArray[questionIndex].image)
+    // indicate if they got it right, wrong, or if time was up
     $("#message-display").html(message);
+    //reveal the correct answer
+    if(guessedRight){
+        $("#correct-answer").html("'" + questionsArray[questionIndex].correctAnswer[1]+ "' was the correct answer!" );
+    }else{
+        $("#correct-answer").html("The correct answer was '" + questionsArray[questionIndex].correctAnswer[1] +"' ...");
+    }    
+    //show the answer field
     $("#question-answer-display").height("10px");
     $("#question-answer-display").show().animate({height: "300px"});
+    //play audio
     audio.play();
+    //move to next question after a set # of seconds
     answerRevealTimeoutId = setTimeout(nextQuesiton, 1000*timeBetweenQuestions);
 }
 

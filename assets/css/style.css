@@ -1,12 +1,33 @@
+.bg-img{
+    position: fixed;
+    z-index: -2;
+    top:0;
+    left:0;
+    width: 1500px;
+}
+
 .container{
-    -background-color: lightblue;
+    background-color: rgba(255, 255, 255, 0.788);
     width: 800px;
-    height: 700px;
+    height: 665px;
     margin: 0 auto;
     
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
+    position: relative;
+}
+
+.container::after{
+    content: "";
+    background-image: url(../images/denim2.jpg) ;
+    opacity: 0.9;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1; 
 }
 
 .start-btn{
@@ -19,6 +40,8 @@
 
 .title{
     font-size: 3em;
+    font-style: italic;
+    font-weight: bold;
 }
 
 .main-quiz-display{
@@ -26,33 +49,39 @@
     text-align: center;
 }
 
-.time-field, .question-field{
+.time-field{
     font-size: 1.5em;
-    padding: 1em 2em 0 2em;
+    padding: 0.5em 2em 0 2em;
 }
-
+.question-field{
+    font-size: 1.5em;
+    padding: 1em 2em;
+}
+ 
 .answer-wrapper{
     display: flex;
     flex-flow: column nowrap;
     width: 50%;
-    margin: 2em auto;
+    margin: 1em auto;
+}
+.answer-reveal{
+    font-size: 1.5em;
 }
 #image{
-    max-height: 275px;
+    max-height: 250px;
 }
 
 .question-answer-display{
-    -background-color: violet;
     width: 700px;
-    margin: 50px auto;
+    margin: 0 auto;
 }
 
 button.answer-choice{
-    font-size: 1.5em;
+    font-size: 1.25em;
     padding: 0.25em;
     margin: 0.1em 0;
     border-radius: 7px;
-    -background-color: turquoise;
+    background-color: #28bbac;
     
 }
 button:hover{
@@ -66,4 +95,24 @@ button:active{
 }
 button:focus, button:active{
     outline: none;
+}
+
+.end-stats-display{
+    font-size: 2em;
+    text-align: center;
+    margin-top: 50px;
+}
+.start-over-btn{
+    margin-top: 1em;
+    border-radius: 7px;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+
+@media screen and (min-width: 1500px){
+    .bg-img{
+        width: 100%;
+        height: 100%;
+    }
 }

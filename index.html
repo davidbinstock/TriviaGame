@@ -13,18 +13,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-
+    <img class="bg-img" src="./assets/images/plaid.jpg">
     <div class="container">
         <div class="title">Sienfeld Trivia</div>
-
         <button id="start-btn" class="start-btn">Start</button>
-
         <div class="main-quiz-display" id="main-quiz-display">
             <div class="time-field">Time Remaining: <span id="time-display"></span></div>
             <div class="question-field"><span id="question-display"></span></div>
             <div class="question-answer-display" id="question-answer-display">
                 <div class="question-answer-content">
-                    <span id="message-display"></span>
+                    <span class="answer-reveal" id="message-display"></span>
+                    <br>
+                    <span class="answer-reveal" id="correct-answer"></span>
                     <br>
                     <img id="image" src="">
                 </div>
@@ -39,10 +39,10 @@
         
 
         <div class="end-stats-display" id="end-stats-display">
-            <div class="message"><span id="message-display">End of Quiz, here's how you did:</span></div>
-            <div class="numb-correct">Correct Answers:<span id="numb-correct-display"></span></div>
-            <div class="numb-wrong">Wrong Answers:<span id="numb-wrong-display"></span></div>
-            <div class="numb-unanswered">Unanswered:<span id="numb-unanswered-display"></span></div>
+            <div class="message"><span id="message-display">End of quiz, here's how you did:</span></div>
+            <div class="numb-correct">Correct Answers: <span id="numb-correct-display"></span></div>
+            <div class="numb-wrong">Wrong Answers: <span id="numb-wrong-display"></span></div>
+            <div class="numb-unanswered">Unanswered: <span id="numb-unanswered-display"></span></div>
             <button class="start-over-btn" id="start-over-btn">Start Over</button>
         </div>
 
