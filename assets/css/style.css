@@ -1,5 +1,5 @@
 .container{
-    background-color: lightblue;
+    -background-color: lightblue;
     width: 800px;
     height: 700px;
     margin: 0 auto;
@@ -14,6 +14,7 @@
     height: 2em;
     width: 6em;
     font-size: 2em;
+    border-radius: 7px;
 }
 
 .title{
@@ -25,30 +26,44 @@
     text-align: center;
 }
 
-.time-field, .question-field, .message-field{
+.time-field, .question-field{
     font-size: 1.5em;
-    height: 2em;
-    padding: 1em 2em;
+    padding: 1em 2em 0 2em;
 }
 
 .answer-wrapper{
     display: flex;
     flex-flow: column nowrap;
-    width: 25%;
-    margin: 0 auto;
+    width: 50%;
+    margin: 2em auto;
+}
+#image{
+    max-height: 275px;
 }
 
 .question-answer-display{
-    background-color: violet;
-    height: 300px;
+    -background-color: violet;
     width: 700px;
+    margin: 50px auto;
 }
 
-button.answer-choice:hover{
-    background-color: turquoise;
+button.answer-choice{
+    font-size: 1.5em;
+    padding: 0.25em;
+    margin: 0.1em 0;
+    border-radius: 7px;
+    -background-color: turquoise;
     
 }
-button.answer-choice:active{
-    background-color: rgb(44, 165, 153);
+button:hover{
+    background-color: #fcd81a;
+    color: #e4021c;
     
+}
+button:active{
+    background-color: #af9514;
+    color: #a30114;
+}
+button:focus, button:active{
+    outline: none;
 }
